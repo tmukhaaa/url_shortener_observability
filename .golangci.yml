@@ -1,0 +1,72 @@
+run:
+  deadline: 5m
+
+issues:
+  exclude-dirs:
+    - internal/mocks
+    - vendor
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  new: false
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gocyclo
+        - errcheck
+        - dupl
+        - gosec
+        - gocognit
+    - linters:
+        - gosec
+      text: "G104"
+    - linters:
+        - errcheck
+      text: "Error return value of `.*` is not checked"
+
+tests: true
+
+linters:
+  disable-all: true
+  enable:
+    - gofmt
+    - goimports
+    - gosimple
+    - stylecheck
+    - unconvert
+    - gocritic
+    - gosec
+    - govet
+    - staticcheck
+    - bodyclose
+    - errcheck
+    - goconst
+    - gocognit
+    - gocyclo
+    - err113
+    - mnd
+    - goprintffuncname
+    - ineffassign
+    - misspell
+    - prealloc
+    - thelper
+    - tparallel
+
+linters-settings:
+  gocritic:
+    enabled-tags:
+      - performance
+      - style
+      - experimental
+  gocyclo:
+    min-complexity: 7
+  mnd:
+    checks: all
+  gocognit:
+    min-complexity: 7
+
+
+output:
+  formats:
+    - format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
